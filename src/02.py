@@ -1,13 +1,9 @@
+from os import read
+
 import parse
 
-# read input
+from utils import read_input
 
-input_file = __file__.replace(".py", ".input")
-input = None
-with open(input_file) as f:
-    input = f.readlines()
-
-# 3-4 j: wjlb
 
 _line_pattern = "{min:d}-{max:d} {char}: {pwd}"
 
@@ -36,5 +32,7 @@ def part02(input):
     return valid_pwd_count
 
 
-print(part01(input))
-print(part02(input))
+if __name__ == "__main__":
+    input = read_input("02")
+    print(part01(input))
+    print(part02(input))
