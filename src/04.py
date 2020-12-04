@@ -62,32 +62,23 @@ def is_passport_valid(passport):
 
 
 def part01(passports):
-    return len([
-        passport
-        for passport in passports
-        if all(field in passport for field in _mandatory_fields)
-    ])
+    valids_passports = list(filter(
+        lambda x: all(field in x for field in _mandatory_fields),
+        passports
+    ))
+    return len(valids_passports)
 
 
 def part02(passports):
-    return len([
-        passport
-        for passport in passports
-        if is_passport_valid(passport)
-    ])
+    valids_passports = list(filter(is_passport_valid, passports))
+    return len(valids_passports)
 
 
 if __name__ == "__main__":
 
-    input = [
-        line.strip("\n")
-        for line in read_input("04", ignore_blank_lines=False)
-    ]
+    input = [line.strip("\n") for line in read_input("04", ignore_blank_lines=False)]
     passports = format_passports(input)
 
     # print(passports)
     print(part01(passports))
     print(part02(passports))
-
-
-
