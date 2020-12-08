@@ -14,10 +14,11 @@ class EndOfCode(Exception):
 
 
 def part01(code):
-    print(code)
     i, acc, register = 0, 0, set()
     while True:
         opp, arg = code[i].split(" ")
+        if i == len(code) - 1:
+            raise EndOfCode(acc=acc)
         if i in register:
             raise LoopForever(acc=acc)
         register.add(i)
@@ -29,8 +30,6 @@ def part01(code):
         elif opp == "acc":
             acc += int(arg)
             i += 1
-        if i >= len(code):
-            raise EndOfCode(acc=acc)
 
 
 def part02(code):
